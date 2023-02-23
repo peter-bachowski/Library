@@ -1,0 +1,33 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 50px 200px;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  justify-items: center;
+}
+
+.bookContainer {
+  width: 100%;
+  display: inline-grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  justify-items: center;
+}
+
+.bookContainer > button {
+  width: 200px;
+  height: 100px;
+}
+
+#headerTxt {
+  grid-column: 1 / 2;
+}
