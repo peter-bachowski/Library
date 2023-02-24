@@ -7,15 +7,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="script.js" defer></script>
   <link href="styles.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" />
   <title>Library</title>
 </head>
 
 <body>
+
   <div class="container">
-    <h1 id="headerTxt">My Library!</h1>
+    <div id="header">My Library!</div>
     <button id="addBookBtn">Add New Book</button>
     <div id="bookContainer"></div>
+    <div id="footer">Copyright © Peter Bachowski and The Odin Project 2023</div>
   </div>
+
+
+
+  <!-- lightbox, which is hidden -->
+  <div id="lightbox">
+    <div id="formContainer">
+      <form id="bookForm" onsubmit="return false">
+        <div class="inputDiv">
+          <label for="bookTitle">Title</label>
+          <input type="text" name="bookTitle" id="bookTitle" placeholder="Lord of the Rings Fellowship of the Rings"
+            required></input>
+        </div>
+        <div class="inputDiv">
+          <label for="bookAuthor">Author</label>
+          <input type="text" name="bookAuthor" id="bookAuthor" placeholder="J.R.R. Tolkien" required></input>
+        </div>
+        <div class="inputDiv">
+          <label for="bookPages">Pages</label>
+          <input type="text" name="bookPages" id="bookPages" placeholder="423" required></input>
+        </div>
+
+        <button id="submitBtn">Submit</button>
+        <button id="closeBtn">Close</button>
+      </form>
+    </div>
+  </div>
+
 </body>
 
 </html>
