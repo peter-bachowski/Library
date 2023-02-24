@@ -21,8 +21,8 @@ closeBtn.onclick = function() {
   lightbox.className = "off";
 }
 
-submitBtn.onclick = (title, author, pages) => {
-  addBookToLibrary(title, author, pages);
+submitBtn.onclick = () => {
+  addBookToLibrary();
   lightbox.className = "off";
 }
 
