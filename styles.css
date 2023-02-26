@@ -53,9 +53,15 @@ html, body {
   margin: 50px;
 }
 
-#bookContainer > button {
+#bookContainer > div {
   width: 200px;
   height: 100px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  color: white;
+  background-color: #514f64;
+  border-radius: 2px;
 }
 
 #lightbox {

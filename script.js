@@ -25,7 +25,7 @@ closeBtn.onclick = function() {
 }
 
 submitBtn.onclick = (event) => {
-  addBookToLibrary(title.innerText, author.innerText, pages.innerText, event);
+  addBookToLibrary(title.value, author.value, pages.value, event);
   lightbox.className = "off";
 }
 
@@ -35,13 +35,14 @@ function addBookToLibrary(title, author, pages, event) {
   event.preventDefault();
   const newBook = new Book(title, author, pages);
   myLibrary.push(newBook);
-  Book.prototype.toString = function bookToString() {
-    return `${this.bookTitle}`;
-    return `${this.bookAuthor}`;
-    return `${this.bookPages}`;
+  Book.prototype.toString = function bookTitleToString() {
+    return `${this.title}`;
   };
-  let newBookBtn = document.createElement("button");
+  let newBookBtn = document.createElement("div");
+  let newBookBtnClose = document.createElement("button");
+  newBookBtn.appendChild(newBookBtnClose);
+  newBookBtnClose.id = "newBookBtnClose";
   newBookBtn.id = "book" + myLibrary.length;
-  newBookBtn.innerText = newBook.prototype.toString();
+  newBookBtn.innerText = newBook.toString();
   bookContainer.appendChild(newBookBtn);
 }
