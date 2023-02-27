@@ -19,38 +19,54 @@ function Book(title, author, pages, bookStatus) {
   this.bookStatus = bookStatus;
 }
 
-addBookBtn.onclick = () => {
-  lightbox.className = "on";
-}
-
-closeBtn.onclick = function() {
-  lightbox.className = "off";
-}
-
-submitBtn.onclick = (event) => {
-  let bookStatus;
-  for (let i = 0; i < bookStatusEls.length; i++){
-    if (bookStatusEls[i].checked){
-      bookStatus = bookStatusEls[i].value;
-      break;
-    }
-  }
-  addBookToLibrary(title.value, author.value, pages.value, bookStatus, event);
-  lightbox.className = "off";
-}
+//functions
 
 function addBookToLibrary(title, author, pages, bookStatus, event) {
-  event.preventDefault(); //removes the check if input filled requirement for the form
+  event.preventDefault(); //prevents form from sending to a server
 
   const bookObject = new Book(title, author, pages, bookStatus);
   const book = document.createElement("div");
   const removeBookBtn = document.createElement("button");
+  const statusContainer = document.createElement("div");
+  const option1 = document.createElement("input");
+  const option2 = document.createElement("input");
+  const option3 = document.createElement("input");
+  const label1 = document.createElement("label");
+  const label2 = document.createElement("label");
+  const label3 = document.createElement("label");
   bookCount += 1;
 
-    Book.prototype.toString = function bookTitleToString() {
-    return "Title: " + this.title + "\n\n" + "Author: " + this.author + "\n\n" + "Pages: " + this.pages + "\n\n" + "Status: " + this.bookStatus;
+  statusContainer.classList.add("statusContainer");
+
+  label1.innerText = "Not Started";
+  option1.type = "radio";
+  option1.name = "status";
+  option1.value = "Not Started";
+
+  label2.innerText = "Still Reading";
+  option2.type = "radio";
+  option2.name = "status";
+  option2.value = "Still Reading";
+
+  label3.innerText = "Finished";
+  option3.type = "radio";
+  option3.name = "status";
+  option3.value = "Finished";
+
+  statusContainer.appendChild(label1);
+  statusContainer.appendChild(option1);
+  statusContainer.appendChild(label2);
+  statusContainer.appendChild(option2);
+  statusContainer.appendChild(label3);
+  statusContainer.appendChild(option3);
+
+  const optionEls = document.getElementsByName("status");
+
+
+  Book.prototype.toString = function bookTitleToString() {
+    return "Title: " + this.title + "\n\n" + "Author: " + this.author + "\n\n" + "Pages: " + this.pages + "\n\n";
   };
-  
+
   myLibrary.push(bookObject);
 
   book.classList.add("book");
@@ -68,7 +84,14 @@ function addBookToLibrary(title, author, pages, bookStatus, event) {
   book.innerText = bookObject.toString();
 
   bookContainer.appendChild(book);
+  book.appendChild(statusContainer);
   book.appendChild(removeBookBtn);
+
+  for (let i = 0; i < optionEls.length; i++) {
+    if (optionEls[i].value === bookStatus) {
+      optionEls[i].checked = true;
+    }
+  }
 }
 
 function removeFromMyLibrary(book) {
@@ -83,3 +106,32 @@ function removeFromMyLibrary(book) {
     }
   }
 }
+
+//onclick button functions
+
+addBookBtn.onclick = () => {
+  lightbox.className = "on";
+}
+
+closeBtn.onclick = function() {
+  lightbox.className = "off";
+}
+
+submitBtn.onclick = (event) => {
+  let bookStatus;
+  for (let i = 0; i < bookStatusEls.length; i++) {
+    if (bookStatusEls[i].checked) {
+      bookStatus = bookStatusEls[i].value;
+      break;
+    }
+  }
+  addBookToLibrary(title.value, author.value, pages.value, bookStatus, event);
+  lightbox.className = "off";
+}
+
+
+
+
+
+
+

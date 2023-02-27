@@ -75,6 +75,12 @@ html, body {
   transform: scale(1.4);    
 }
 
+.statusContainer {
+  display: grid;
+  grid-template: auto auto auto / auto auto;
+  justify-items: right;
+}
+
 .removeBookBtn {
     width: auto;
     height: auto;
