@@ -106,9 +106,9 @@ html, body {
 
 #formContainer {
   width: 300px;
-  height: 300px;
+  height: auto;
   background-color: white;
-  padding: 50px;
+  padding: 30px;
 }
 
 #bookForm {
@@ -118,6 +118,13 @@ html, body {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+}
+
+.checkBoxContainer {
+  display: grid;
+  grid-template: auto auto / auto auto;
+  justify-items: right;
+  padding: 10px;
 }
 
 .inputDiv {

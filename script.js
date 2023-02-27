@@ -8,13 +8,15 @@ let myLibrary = [];
 let title = document.getElementById("bookTitle");
 let author = document.getElementById("bookAuthor");
 let pages = document.getElementById("bookPages");
+let bookStatusEls = document.getElementsByName("bookStatus");
 let bookCount = 0;
 
 //constructor
-function Book(title, author, pages) {
+function Book(title, author, pages, bookStatus) {
   this.title = title;
   this.author = author;
   this.pages = pages;
+  this.bookStatus = bookStatus;
 }
 
 addBookBtn.onclick = () => {
@@ -26,25 +28,30 @@ closeBtn.onclick = function() {
 }
 
 submitBtn.onclick = (event) => {
-  addBookToLibrary(title.value, author.value, pages.value, event);
+  let bookStatus;
+  for (let i = 0; i < bookStatusEls.length; i++){
+    if (bookStatusEls[i].checked){
+      bookStatus = bookStatusEls[i].value;
+      break;
+    }
+  }
+  addBookToLibrary(title.value, author.value, pages.value, bookStatus, event);
   lightbox.className = "off";
 }
 
-//submitBtn.addEventListener("click", addBookToLibrary);
-
-function addBookToLibrary(title, author, pages, event) {
-
+function addBookToLibrary(title, author, pages, bookStatus, event) {
   event.preventDefault(); //removes the check if input filled requirement for the form
-  bookCount += 1;
-  const bookObject = new Book(title, author, pages);
-  myLibrary.push(bookObject);
 
+  const bookObject = new Book(title, author, pages, bookStatus);
   const book = document.createElement("div");
   const removeBookBtn = document.createElement("button");
+  bookCount += 1;
 
-  Book.prototype.toString = function bookTitleToString() {
-    return this.title + "\n\n" + this.author + "\n\n" + this.pages + " pages";
+    Book.prototype.toString = function bookTitleToString() {
+    return "Title: " + this.title + "\n\n" + "Author: " + this.author + "\n\n" + "Pages: " + this.pages + "\n\n" + "Status: " + this.bookStatus;
   };
+  
+  myLibrary.push(bookObject);
 
   book.classList.add("book");
   removeBookBtn.classList.add("removeBookBtn");
@@ -64,11 +71,11 @@ function addBookToLibrary(title, author, pages, event) {
   book.appendChild(removeBookBtn);
 }
 
-function removeFromMyLibrary (book) {
+function removeFromMyLibrary(book) {
   const bookElements = document.querySelectorAll(".book");
-  for (let i = 0; i < myLibrary.length; i++){
-    if(bookElements[i].id === book.id){
-      for (let j = i; j < myLibrary.length; j++){
+  for (let i = 0; i < myLibrary.length; i++) {
+    if (bookElements[i].id === book.id) {
+      for (let j = i; j < myLibrary.length; j++) {
         myLibrary[j] = myLibrary[j + 1];
       }
       myLibrary.length = myLibrary.length - 1;

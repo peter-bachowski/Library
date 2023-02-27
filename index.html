@@ -39,7 +39,14 @@
           <label for="bookPages">Pages</label>
           <input type="text" name="bookPages" id="bookPages" placeholder="423" required></input>
         </div>
-
+        <div class="checkBoxContainer">
+          <label for="notStarted">Not Started: </label>
+          <input type="radio" name="bookStatus" value="Not Started">
+          <label for="stillReading">Still Reading: </label>
+          <input type="radio" name="bookStatus" value="Still Reading">
+          <label for="finished">Finished: </label>
+          <input type="radio" name="bookStatus" value="Finished">
+        </div>
         <button type="submit" id="submitBtn">Submit</button>
         <button id="closeBtn">Close</button>
       </div>
