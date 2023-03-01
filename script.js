@@ -1,3 +1,5 @@
+//variables
+
 const bookContainer = document.getElementById("bookContainer");
 const addBookBtn = document.getElementById("addBookBtn");
 const lightbox = document.getElementById("lightbox");
@@ -21,13 +23,14 @@ function Book(title, author, pages, bookStatus) {
 
 //functions
 
-function addBookToLibrary(title, author, pages, bookStatus, event) {
+function addBookToLibrary(title, author, pages, bookStatus, event) { // adds the book element to the container with all the information, then resets the form
   event.preventDefault(); //prevents form from sending to a server
 
   const bookObject = new Book(title, author, pages, bookStatus);
   const book = document.createElement("div");
   const removeBookBtn = document.createElement("button");
   const statusContainer = document.createElement("div");
+  const formOptionEls = document.getElementsByName("bookStatus");
   const option1 = document.createElement("input");
   const option2 = document.createElement("input");
   const option3 = document.createElement("input");
@@ -38,19 +41,21 @@ function addBookToLibrary(title, author, pages, bookStatus, event) {
 
   statusContainer.classList.add("statusContainer");
 
+  const optionName = bookObject.title + "status";
+
   label1.innerText = "Not Started";
   option1.type = "radio";
-  option1.name = "status";
+  option1.name = optionName;
   option1.value = "Not Started";
 
   label2.innerText = "Still Reading";
   option2.type = "radio";
-  option2.name = "status";
+  option2.name = optionName;
   option2.value = "Still Reading";
 
   label3.innerText = "Finished";
   option3.type = "radio";
-  option3.name = "status";
+  option3.name = optionName;
   option3.value = "Finished";
 
   statusContainer.appendChild(label1);
@@ -59,9 +64,6 @@ function addBookToLibrary(title, author, pages, bookStatus, event) {
   statusContainer.appendChild(option2);
   statusContainer.appendChild(label3);
   statusContainer.appendChild(option3);
-
-  const optionEls = document.getElementsByName("status");
-
 
   Book.prototype.toString = function bookTitleToString() {
     return "Title: " + this.title + "\n\n" + "Author: " + this.author + "\n\n" + "Pages: " + this.pages + "\n\n";
@@ -87,10 +89,17 @@ function addBookToLibrary(title, author, pages, bookStatus, event) {
   book.appendChild(statusContainer);
   book.appendChild(removeBookBtn);
 
+  const optionEls = document.getElementsByName(optionName);
   for (let i = 0; i < optionEls.length; i++) {
-    if (optionEls[i].value === bookStatus) {
+    if (optionEls[i].value === bookObject.bookStatus) {
       optionEls[i].checked = true;
     }
+  }
+  bookTitle.value = "";
+  bookAuthor.value = "";
+  bookPages.value = "";
+  for (let i = 0; i < formOptionEls.length; i++) {
+      formOptionEls[i].checked = false;
   }
 }
 
