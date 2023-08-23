@@ -5,6 +5,8 @@ const addBookBtn = document.getElementById("addBookBtn");
 const lightbox = document.getElementById("lightbox");
 const closeBtn = document.getElementById("closeBtn");
 const submitBtn = document.getElementById("submitBtn");
+const bookTitle = document.getElementById('bookTitle');
+const bookAuthor = document.getElementById('bookAuthor');
 
 let myLibrary = [];
 let title = document.getElementById("bookTitle");
@@ -12,6 +14,9 @@ let author = document.getElementById("bookAuthor");
 let pages = document.getElementById("bookPages");
 let bookStatusEls = document.getElementsByName("bookStatus");
 let bookCount = 0;
+
+
+
 
 //constructor
 function Book(title, author, pages, bookStatus) {
@@ -24,7 +29,7 @@ function Book(title, author, pages, bookStatus) {
 //functions
 
 function addBookToLibrary(title, author, pages, bookStatus, event) { // adds the book element to the container with all the information, then resets the form
-  event.preventDefault(); //prevents form from sending to a server
+  //event.preventDefault(); //prevents form from sending to a server
 
   const bookObject = new Book(title, author, pages, bookStatus);
   const book = document.createElement("div");
@@ -116,17 +121,7 @@ function removeFromMyLibrary(book) {
   }
 }
 
-//onclick button functions
-
-addBookBtn.onclick = () => {
-  lightbox.className = "on";
-}
-
-closeBtn.onclick = function() {
-  lightbox.className = "off";
-}
-
-submitBtn.onclick = (event) => {
+function submitFnc (event) {
   let bookStatus;
   for (let i = 0; i < bookStatusEls.length; i++) {
     if (bookStatusEls[i].checked) {
@@ -138,9 +133,16 @@ submitBtn.onclick = (event) => {
   lightbox.className = "off";
 }
 
+//onclick button functions
 
+addBookBtn.onclick = () => {
+  lightbox.className = "on";
+}
 
+closeBtn.onclick = function() {
+  lightbox.className = "off";
+}
 
-
-
-
+submitBtn.onsubmit = () => {
+  submitFnc;
+}

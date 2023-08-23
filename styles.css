@@ -137,3 +137,11 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+
+#bookTitle:valid, #bookAuthor:valid, #bookPages:valid {
+  background-color: rgb(211, 255, 211);
+}
+
+#bookTitle:invalid, #bookAuthor:invalid, #bookPages:invalid {
+  background-color: rgb(255, 208, 208);
+}

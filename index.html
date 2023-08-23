@@ -22,34 +22,34 @@
 
 
 
-  <!-- lightbox, which is hidden -->
+  <!-- lightbox, which is hidden by default-->
   <div id="lightbox">
     <div id="formContainer">
-      <div id="bookForm" onsubmit="return false">
+      <form id="bookForm">
         <div class="inputDiv">
           <label for="bookTitle">Title</label>
-          <input type="text" name="bookTitle" id="bookTitle" placeholder="Lord of the Rings Fellowship of the Rings"
+          <input type="text" name="bookTitle" id="bookTitle" pattern="[a-zA-Z ]+" placeholder="Lord of the Rings Fellowship of the Rings"
             required></input>
         </div>
         <div class="inputDiv">
           <label for="bookAuthor">Author</label>
-          <input type="text" name="bookAuthor" id="bookAuthor" placeholder="J.R.R. Tolkien" required></input>
+          <input type="text" name="bookAuthor" id="bookAuthor" pattern="[a-zA-Z .]+" placeholder="J.R.R. Tolkien" required></input>
         </div>
         <div class="inputDiv">
           <label for="bookPages">Pages</label>
-          <input type="text" name="bookPages" id="bookPages" placeholder="423" required></input>
+          <input type="number" name="bookPages" id="bookPages" placeholder="423" required></input>
         </div>
         <div class="checkBoxContainer">
           <label for="notStarted">Not Started: </label>
-          <input type="radio" name="bookStatus" value="Not Started">
+          <input type="radio" name="bookStatus" value="Not Started" required>
           <label for="stillReading">Still Reading: </label>
-          <input type="radio" name="bookStatus" value="Still Reading">
+          <input type="radio" name="bookStatus" value="Still Reading" required>
           <label for="finished">Finished: </label>
-          <input type="radio" name="bookStatus" value="Finished">
+          <input type="radio" name="bookStatus" value="Finished" required>
         </div>
         <button type="submit" id="submitBtn">Submit</button>
         <button id="closeBtn">Close</button>
-      </div>
+      </form>
     </div>
   </div>
 
